@@ -7,7 +7,7 @@ KERNEL_OFFSET equ 0x1000; This is the memory offset to which we will load out ke
     mov bp, 0x9000       ; Set-up the stack
     mov sp, bp
 
-    mov bx, MSG_REAL_MODE; A string that print we are starting
+    mov si, MSG_REAL_MODE; A string that print we are starting
 
     call print_string
 
@@ -30,10 +30,10 @@ KERNEL_OFFSET equ 0x1000; This is the memory offset to which we will load out ke
 ; load_kernel
 
 load_kernel:
-    mov bx, MSG_LOAD_KERNEL     ; Print a message to say we are loading kernel
+    mov si, MSG_LOAD_KERNEL     ; Print a message to say we are loading kernel
     call print_string
 
-    mov mx, KERNEL_OFFSET       ; Set up params for disk_loading
+    mov bx, KERNEL_OFFSET       ; Set up params for disk_loading
     mov dh, 15                  ; load up frist 15 sectors (excluding boot sector)
     mov dl, [BOOT_DRIVE]        ; from the boot disk (i.e. out kernel code)
     call disk_load              ; to address KERNEL_OFFSET
@@ -45,17 +45,19 @@ load_kernel:
 
 BEGIN_PM:
 
-    move ebx, MSG_PROT_MODE ; Use out 32 bit print to print we are in protected mode
+    mov ebx, MSG_PROT_MODE  ; Use out 32 bit print to print we are in protected mode
     call print_string_pm    ; Print the string out
 
     call KERNEL_OFFSET      ; Now junp to the address of our loaded kernel code
                             ; And let all the fun begins
 
+    jmp $                   ; Hang
+
 ; Global variables
 
 BOOT_DRIVE      db 0 
-MSG_REAL_MODE   db "Started in 16-bit Real Mode", 0
-MSG_PROT_MODE   db "Successfully lnaded in 32-bit Protected Mode", 0
+MSG_REAL_MODE   db "Started in 16-bit Real Mode!", 0
+MSG_PROT_MODE   db "Successfully lnaded in 32-bit Protected Mode!", 0
 MSG_LOAD_KERNEL db "Loading kernel into memory.", 0
 
 ; Bootsector padding
