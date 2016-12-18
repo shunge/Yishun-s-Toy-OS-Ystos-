@@ -8,7 +8,6 @@ KERNEL_OFFSET equ 0x1000; This is the memory offset to which we will load out ke
     mov sp, bp
 
     mov si, MSG_REAL_MODE; A string that print we are starting
-
     call print_string
 
     call load_kernel     ; Load out kernel

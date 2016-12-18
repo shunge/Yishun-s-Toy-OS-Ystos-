@@ -40,7 +40,6 @@ gdt_end:        ; The reason for putting a label at the end of the GDT
 gdt_descriptor:
     dw gdt_end - gdt_start - 1  ; Size pf our GDT, always less one of the true szize
 
-
     dd gdt_start                ; Start address of our GDT
 
 ; Define some constants

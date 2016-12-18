@@ -19,6 +19,10 @@ disk_load:
         pop dx      ; Restore DX from the stack
         cmp dh, al  ; if AL(sectors read) is not equal to DH (sectors expected)
         jne disk_error; Display error message
+
+        mov si, DISK_LOADED ; We pass the error.
+        call print_string
+
         ret
 
 disk_error:
@@ -29,4 +33,5 @@ disk_error:
 
 ; Variables
 DISK_ERROR_MSG      db "Disk read error!", 0
+DISK_LOADED         db "Disk load passed!", 0
 
