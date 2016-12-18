@@ -15,7 +15,7 @@ gdt_code:  ; the code segment descriptor
 
     dw 0xffff   ; Limit (bits 0 -15)
     dw 0x0      ; Base  (bits 0-15)
-    dw 0x0      ; Base (bits 16 - 23)
+    db 0x0      ; Base (bits 16 - 23)
     db 10011010b; 1st flags, type flags
     db 11001111b; 2nd flags, Limit (bits 16-19)
     db 0x0      ; Base (bits 24-31)
@@ -27,9 +27,9 @@ gdt_data:   ; the data segment descriptor
 
     dw 0xffff   ; Limit
     dw 0x0      ; Base
-    dw 0x0      ; Base
-    dw 10010010b; 1st flags, type flags
-    dw 11001111b; 2nd falgs, Limit
+    db 0x0      ; Base
+    db 10010010b; 1st flags, type flags
+    db 11001111b; 2nd falgs, Limit
     db 0x0      ; Base
 
 gdt_end:        ; The reason for putting a label at the end of the GDT
