@@ -19,10 +19,6 @@ disk_load:
         pop dx      ; Restore DX from the stack
         cmp dh, al  ; if AL(sectors read) is not equal to DH (sectors expected)
         jne disk_error; Display error message
-
-        mov bx, DISK_LOADED ; We pass the error.
-        call print_string
-
         ret
 
 disk_error:

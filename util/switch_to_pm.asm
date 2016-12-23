@@ -22,7 +22,6 @@ switch_to_pm:
 ; Voila! Here you are. Initialise registers and the stack once in PM
 
 init_pm:
-
     mov ax, DATA_SEG        ; Now in PM, our old segments are meaningless,
     mov ds, ax              ; so we point our segment registers to the
     mov ss, ax              ; data selector we defined in our GDT
