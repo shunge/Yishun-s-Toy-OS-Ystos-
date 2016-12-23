@@ -7,7 +7,7 @@ KERNEL_OFFSET equ 0x1000; This is the memory offset to which we will load out ke
     mov bp, 0x9000       ; Set-up the stack
     mov sp, bp
 
-    mov si, MSG_REAL_MODE; A string that print we are starting
+    mov bx, MSG_REAL_MODE; A string that print we are starting
     call print_string
 
     call load_kernel     ; Load out kernel
@@ -18,7 +18,7 @@ KERNEL_OFFSET equ 0x1000; This is the memory offset to which we will load out ke
     jmp $
 
 ; Included routines
-%include "util/print_string.asm"
+%include "util/new_print_string.asm"
 %include "util/disk_load.asm"
 %include "util/gdt.asm"
 %include "util/print_string_pm.asm"
@@ -29,7 +29,7 @@ KERNEL_OFFSET equ 0x1000; This is the memory offset to which we will load out ke
 ; load_kernel
 
 load_kernel:
-    mov si, MSG_LOAD_KERNEL     ; Print a message to say we are loading kernel
+    mov bx, MSG_LOAD_KERNEL     ; Print a message to say we are loading kernel
     call print_string
 
     mov bx, KERNEL_OFFSET       ; Set up params for disk_loading

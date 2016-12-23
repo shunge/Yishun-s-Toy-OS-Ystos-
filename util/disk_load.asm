@@ -20,14 +20,14 @@ disk_load:
         cmp dh, al  ; if AL(sectors read) is not equal to DH (sectors expected)
         jne disk_error; Display error message
 
-        mov si, DISK_LOADED ; We pass the error.
+        mov bx, DISK_LOADED ; We pass the error.
         call print_string
 
         ret
 
 disk_error:
     
-    mov si, DISK_ERROR_MSG
+    mov bx, DISK_ERROR_MSG
     call print_string
     jmp $
 
