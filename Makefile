@@ -18,7 +18,7 @@ kernel.bin: kernel/kernel_entry.o ${OBJ}
 		ld -o $@ -melf_i386 -Ttext 0x1000 $^ --oformat binary
 
 %.o: %.c ${HEADERS}
-		gcc -m32 -ffreestanding -c $< -o $@
+		gcc -m32 -ffreestanding -I include -c $< -o $@
 
 %.o: %.asm
 		nasm $< -f elf32 -o $@
