@@ -8,7 +8,8 @@ Workflow:
 3. User Mode, Kernels.    **TODO**<br />
 4. File System. **TODO**<br />
 
-
+Uses Bochs to emulate:
+![Settings Window](https://cloud.githubusercontent.com/assets/13663524/21711155/1bc1304e-d3a2-11e6-9642-189dde7d70e5.png)
 
 <br /><br /><br />
 
