@@ -5,24 +5,29 @@
 
 #include "types.h"
 
-static int vsprintf(char *buff, const char *format, va_list args);
+void vsprintf(char *buff, const char *format, va_list args);
 
 void printk(const char *format, ...)
 {
-	static char buff[1024];
+	char buff[256];
 	va_list args;
-	int i;
+	/*int i;
 
 	va_start(args, format);
 	i = vsprintf(buff, format, args);
 	va_end(args);
 
-	buff[i] = '\0';
+	buff[i] = '\0';*/
+    bzero(buff, sizeof(buff));
+    va_start(args, format);
+    vsprintf(buff, format, args);
+    va_end(args);
 
 	console_write(buff);
+    //memset(buff, 0, sizeof(buff));
 }
 
-void printk_color(real_color_t back, real_color_t fore, const char *format, ...)
+/*void printk_color(real_color_t back, real_color_t fore, const char *format, ...)
 {
 	static char buff[1024];
 	va_list args;
@@ -35,7 +40,7 @@ void printk_color(real_color_t back, real_color_t fore, const char *format, ...)
 	buff[i] = '\0';
 
 	console_write_color(buff, back, fore);
-}
+}*/
 
 
 char* itoa(int value, char *str, int radix){
@@ -111,7 +116,7 @@ char* gcvt(double value, int ndigit, char *buf){
     return buf;
 }
 
-static int vsprintf(char *buf, const char *fmt, va_list args){
+void vsprintf(char *buf, const char *fmt, va_list args){
     char *p;
     va_list p_next_arg = args;
 
@@ -145,5 +150,5 @@ static int vsprintf(char *buf, const char *fmt, va_list args){
     }
     *p = '\0';
 
-    return (p - buf);
+    //return (p - buf);
 }

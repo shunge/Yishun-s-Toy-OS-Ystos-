@@ -6,6 +6,6 @@ int main(){
 
     console_write_color("Hello!And welcome to YstOS!\n", rc_black, rc_green);
 
-    //panic("Testing");
+    panic("Testing");
     return 0;
 }
