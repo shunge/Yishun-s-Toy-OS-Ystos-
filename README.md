@@ -12,7 +12,7 @@ Workflow:
 
 <br /><br /><br />
 
-Sources for the help I got:<br />
+References<br />
 OS-DEV https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf
 
 MikeOS http://mikeos.sourceforge.net/
