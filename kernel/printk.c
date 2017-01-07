@@ -29,15 +29,13 @@ void printk(const char *format, ...)
 
 /*void printk_color(real_color_t back, real_color_t fore, const char *format, ...)
 {
-	static char buff[1024];
+	char buff[256];
 	va_list args;
-	int i;
 
-	va_start(args, format);
-	i = vsprintf(buff, format, args);
-	va_end(args);
-
-	buff[i] = '\0';
+    bzero(buff, sizeof(buff));
+    va_start(args, format);
+    vsprintf(buff, format, args);
+    va_end(args);
 
 	console_write_color(buff, back, fore);
 }*/
